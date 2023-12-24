@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ethereum Ether to Wei and Gwei Converter</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container mt-5">
+		<h2>Ethereum Ether to Wei and Gwei Converter</h2>
+
+		<div class="form-group">
+			<label for="etherInput">Enter Ether:</label>
+			<input type="number" class="form-control" id="etherInput" placeholder="Enter Ether" oninput="convert('ether')">
+		</div>
+
+		<div class="form-group">
+			<label for="weiInput">Enter Wei:</label>
+			<input type="number" class="form-control" id="weiInput" placeholder="Enter Wei" oninput="convert('wei')">
+		</div>
+
+		<div class="form-group">
+			<label for="gweiInput">Enter Gwei:</label>
+			<input type="number" class="form-control" id="gweiInput" placeholder="Enter Gwei" oninput="convert('gwei')">
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script>
+		function convert(inputType) {
+    // Get the values entered by the user
+
+    console.log(document.getElementById('etherInput').value)
+    console.log(document.getElementById('weiInput').value)
+    console.log(document.getElementById('gweiInput').value)
+
+
+    if (document.getElementById('etherInput').value=="" ) {
+    	document.getElementById('etherInput').value==0
+    }
+
+    if (document.getElementById('weiInput').value=="" ) {
+    	document.getElementById('weiInput').value==0
+    }
+
+    if (document.getElementById('gweiInput').value=="" ) {
+    	document.getElementById('gweiInput').value==0
+    }
+
+   // Get the values entered by the user
+   const etherValue = parseFloat(document.getElementById('etherInput').value) || 0;
+   const weiValue = parseFloat(document.getElementById('weiInput').value) || 0;
+   const gweiValue = parseFloat(document.getElementById('gweiInput').value) || 0;
+
+
+
+   console.log("etherValue:",etherValue)
+   console.log("weiValue:",weiValue)
+   console.log("gweiValue:",gweiValue)
+
+
+
+    // Convert to Wei and Gwei
+
+
+// Set a single conversion factor
+const WeiFactor = 1e18;
+const GweiFactor = 1e9;
+
+
+    // Update all input fields
+
+
+    if (inputType=="ether") {
+
+    	var calculatedWei  =(etherValue * WeiFactor).toFixed(0);
+    	var calculatedGwei =(etherValue * GweiFactor).toFixed(0);
+
+    	document.getElementById('weiInput').value = calculatedWei.toString();
+    	document.getElementById('gweiInput').value = calculatedGwei.toString();
+    }else if (inputType=="wei") {
+
+    	var calculatedEther = weiValue / WeiFactor;
+    	var calculatedGwei = ( weiValue / GweiFactor).toFixed(0);
+
+    	document.getElementById('etherInput').value = calculatedEther.toString();
+    	document.getElementById('gweiInput').value = calculatedGwei.toString();
+
+    }else if (inputType=="gwei") {
+
+    	var calculatedEther = gweiValue / GweiFactor;
+    	var calculatedWei = ( gweiValue * GweiFactor).toFixed(0);
+
+
+    	document.getElementById('etherInput').value = calculatedEther.toString();
+    	document.getElementById('weiInput').value = calculatedWei.toString();
+    	
+    }
+
+
+}
+
+
+function delayConvert(inputType) {
+	setTimeout(() => {
+		convert(inputType);
+    }, 2000); // Delay for 1 second (1000 milliseconds)
+}
+
+
+
+</script>
+
+</body>
+</html>
